@@ -1,0 +1,20 @@
+{
+  "name": "basic-electron-react-ant",
+  "version": "1.0.0",
+  "description": "Basic project in react js and electron js, utilizing methods securities to application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adelinopds/basic-electron-react-ant.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adelinopds/basic-electron-react-ant/issues"
+  },
+  "homepage": "https://github.com/adelinopds/basic-electron-react-ant#readme"
+}
