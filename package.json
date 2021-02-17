@@ -2,9 +2,9 @@
   "name": "basic-electron-react-ant",
   "version": "1.0.0",
   "description": "Basic project in react js and electron js, utilizing methods securities to application",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:dev": "rollup -c rollup.dev.config.js -w"
   },
   "repository": {
     "type": "git",
@@ -21,13 +21,17 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-proptypes": "^1.0.0",
-    "react-router-dom": "^5.2.0",
-    "styled-jsx": "^3.4.4"
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/preset-env": "^7.12.16",
     "@babel/preset-react": "^7.12.13",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-replace": "^2.3.4",
+    "babel": "^6.23.0",
     "babel-core": "^6.26.3",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
@@ -35,7 +39,9 @@
     "rollup": "^2.39.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-replace": "^2.2.0"
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-serve": "^1.1.0"
   }
 }
