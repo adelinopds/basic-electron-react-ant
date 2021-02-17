@@ -26,7 +26,7 @@ export default {
     serve({
       open: true,
       verbose: true,
-      contentBase: ['', 'dist'],
+      contentBase: ['', 'src'],
       historyApiFallback: true,
       host: HOST,
       port: PORT
