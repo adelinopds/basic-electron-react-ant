@@ -9,5 +9,6 @@ Basic project in react js and electron js, utilizing methods securities to appli
 ```bash
 $ git clone https://github.com/adelinopds/basic-electron-react-ant.git myApp
 $ cd myApp
+$ npm install
 $ npm build:dev
 ```
