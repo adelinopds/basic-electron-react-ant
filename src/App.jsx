@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import { DatePicker, message } from 'antd';
 
 const App = () => {
-  const [counter, setCounter] = useState(0)
+  const [date, setDate] = useState(null);
+  const handleChange = value => {
+    message.info(`Selected Date: ${value ? value.format('YYYY-MM-DD') : 'None'}`);
+    setDate(value);
+  };
   return (
-    <div>
-      <h4>A react page bundled with Rollup.js</h4>
-      <br />
-      <h1>Counter: {counter}</h1>
-      <br />
-      <button onClick={()=>{setCounter(counter+1)}}>+ Increase</button>
-      <br />
-      <button onClick={()=>{setCounter(counter-1)}}>- Decrease</button>
+    <div style={{ width: 400, margin: '100px auto' }}>
+      <DatePicker onChange={handleChange} />
+      <div style={{ marginTop: 16 }}>
+        Selected Date: {date ? date.format('YYYY-MM-DD') : 'None'}
+      </div>
     </div>
   );
 };

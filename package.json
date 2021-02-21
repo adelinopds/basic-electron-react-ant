@@ -4,7 +4,9 @@
   "description": "Basic project in react js and electron js, utilizing methods securities to application",
   "main": "src/index.js",
   "scripts": {
-    "build:dev": "rollup -c rollup.dev.config.js -w"
+    "build:dev": "rollup -c rollup.config.dev.js",
+    "clean:dist": " rimraf dist",
+    "start:dev": "npm run clean:dist && cross-env NODE_ENV=development rollup -w -c rollup.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   },
   "homepage": "https://github.com/adelinopds/basic-electron-react-ant#readme",
   "dependencies": {
+    "antd": "^4.12.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-proptypes": "^1.0.0",
@@ -25,8 +28,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
+    "@babel/plugin-transform-runtime": "^7.12.17",
     "@babel/preset-env": "^7.12.16",
     "@babel/preset-react": "^7.12.13",
+    "@rollup/plugin-alias": "^3.1.2",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
@@ -36,12 +41,24 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "cross-env": "^7.0.3",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.6",
+    "rimraf": "^2.7.1",
     "rollup": "^2.39.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-filesize": "^9.1.0",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-postcss-modules": "^2.0.2",
+    "rollup-plugin-progress": "^1.1.2",
+    "rollup-plugin-react-svg": "^3.0.3",
     "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-serve": "^1.1.0"
+    "rollup-plugin-scss": "^2.6.1",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-visualizer": "^4.2.0"
   }
 }
