@@ -2,18 +2,37 @@
   "name": "basic-electron-react-ant",
   "version": "1.0.0",
   "description": "Basic project in react js and electron js, utilizing methods securities to application",
-  "main": "src/index.js",
+  "main": "electron/main.js",
   "scripts": {
+		"postinstall": "electron-builder install-app-deps",
     "build:dev": "rollup -c rollup.config.dev.js",
     "clean:dist": " rimraf dist",
-    "start:dev": "npm run clean:dist && cross-env NODE_ENV=development rollup -w -c rollup.config.dev.js"
+    "start:dev": "npm run clean:dist && cross-env NODE_ENV=development rollup -w -c rollup.config.dev.js && electron ./"
+  },
+	"build": {
+    "productName": "ProductName",
+    "appId": "com.productName|electron.productname",
+    "win": {
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "snap",
+        "AppImage"
+      ]
+    }
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adelinopds/basic-electron-react-ant.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["electron", "rollup", "antd", "react"],
+  "author": "Adelino Pereira",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adelinopds/basic-electron-react-ant/issues"
@@ -24,7 +43,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-proptypes": "^1.0.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "secure-electron-store": "^1.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -42,6 +62,8 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "cross-env": "^7.0.3",
+    "electron-debug": "^3.2.0",
+    "electron-devtools-installer": "^3.1.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.2.6",
     "rimraf": "^2.7.1",
