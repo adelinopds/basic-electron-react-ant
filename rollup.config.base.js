@@ -5,6 +5,8 @@ import replace from '@rollup/plugin-replace'
 import progress from 'rollup-plugin-progress'
 import postcss from 'rollup-plugin-postcss'
 import filesize from 'rollup-plugin-filesize'
+import json from 'rollup-plugin-json'
+import reactSvg from 'rollup-plugin-react-svg'
 import path from 'path'
 
 
@@ -17,6 +19,8 @@ export default {
 			browser: true,
 			extensions: ['.js', '.jsx', '.json']
 		}),
+		json(),
+		reactSvg(),
     commonjs({
       include: [ 'node_modules/**'],
 			exclude: ['node_modules/process-es6/**'],
@@ -35,5 +39,6 @@ export default {
       'process.env.NODE_ENV': JSON.stringify('development')
     }),
   ],
-	//external:['antd']
+	inlineDynamicImports: true,
+	external:['fs', 'path']
 }

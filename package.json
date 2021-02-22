@@ -1,15 +1,17 @@
 {
   "name": "basic-electron-react-ant",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Basic project in react js and electron js, utilizing methods securities to application",
+	"private": true,
   "main": "electron/main.js",
   "scripts": {
-		"postinstall": "electron-builder install-app-deps",
+    "postinstall": "electron-builder install-app-deps",
     "build:dev": "rollup -c rollup.config.dev.js",
     "clean:dist": " rimraf dist",
-    "start:dev": "npm run clean:dist && cross-env NODE_ENV=development rollup -w -c rollup.config.dev.js && electron ./"
+    "start:dev-server": "npm run clean:dist && cross-env NODE_ENV=development rollup -w -c rollup.config.dev.js",
+    "start:app": "concurrently --success first \" npm run start:dev-server\" \" cross-env NODE_ENV=development electron . \" -k"
   },
-	"build": {
+  "build": {
     "productName": "ProductName",
     "appId": "com.productName|electron.productname",
     "win": {
@@ -31,15 +33,24 @@
     "type": "git",
     "url": "git+https://github.com/adelinopds/basic-electron-react-ant.git"
   },
-  "keywords": ["electron", "rollup", "antd", "react"],
-  "author": "Adelino Pereira",
+  "keywords": [
+    "electron",
+    "rollup",
+    "antd",
+    "react"
+  ],
+  "author": "adelinopds",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adelinopds/basic-electron-react-ant/issues"
   },
   "homepage": "https://github.com/adelinopds/basic-electron-react-ant#readme",
+	"browserslist": [
+    "last 2 Chrome versions"
+  ],
   "dependencies": {
     "antd": "^4.12.3",
+    "concurrently": "^6.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-proptypes": "^1.0.0",
@@ -62,6 +73,8 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "cross-env": "^7.0.3",
+    "electron": "^11.3.0",
+    "electron-builder": "^22.9.1",
     "electron-debug": "^3.2.0",
     "electron-devtools-installer": "^3.1.1",
     "npm-run-all": "^4.1.5",
@@ -72,6 +85,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-filesize": "^9.1.0",
+    "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^4.0.0",

@@ -1,4 +1,3 @@
-
 const fs = require("fs");
 const path = require("path");
 
@@ -17,35 +16,41 @@ const mimeTypes = {
   ".png": "image/png",
   ".jpg": "image/jpeg",
   ".map": "text/plain"
+};
+
+function charset(mimeType) {
+  return [".html", ".htm", ".js", ".mjs"].some((m) => m === mimeType)
+    ? "utf-8"
+    : null;
 }
-const mimiType = filename => mimeTypes[path.extname(`${filename || ""}`).toLowerCase()]
 
-const charset = mimeType => [".html", ".htm", ".js", ".mjs"].some(m => m === mimeType)
-	? "utf-8"
-	: null;
+function mime(filename) {
+  const type = mimeTypes[path.extname(`${filename || ""}`).toLowerCase()];
+  return type ? type : null;
+}
 
-const mime = filename => mimiType(filename) || null
+function requestHandler(req, next) {
+  const reqUrl = new URL(req.url);
+  let reqPath = path.normalize(reqUrl.pathname);
+  if (reqPath === "/") {
+    reqPath = "/index.html";
+  }
+  const reqFilename = path.basename(reqPath);
+  fs.readFile(path.join(DIST_PATH, reqPath), (err, data) => {
+    const mimeType = mime(reqFilename);
+    if (!err && mimeType !== null) {
+      next({
+        mimeType: mimeType,
+        charset: charset(mimeType),
+        data: data
+      });
+    } else {
+      console.error(err);
+    }
+  });
+}
 
 module.exports = {
   scheme,
-  requestHandler(req, next) {
-		const reqUrl = new URL(req.url);
-		let reqPath = path.normalize(reqUrl.pathname);
-		if (reqPath === "/") {
-			reqPath = "/index.html";
-		}
-		const reqFilename = path.basename(reqPath);
-		fs.readFile(path.join(DIST_PATH, reqPath), (err, data) => {
-			const mimeType = mime(reqFilename);
-			if (!err && mimeType !== null) {
-				next({
-					mimeType: mimeType,
-					charset: charset(mimeType),
-					data: data
-				});
-			} else {
-				console.error(err);
-			}
-		});
-	}
-}
+  requestHandler
+};
